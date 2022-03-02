@@ -6,8 +6,8 @@ function List({ config }) {
     const [data, setData] = useState([]);
     const [state, setState] = useState({ loading: true, hasError: false });
     useEffect(() => {
-        if (!config.API) return;
-        const websocket = new WebSocket(config.API);
+        if (!config.WEBSOCKET_URL) return;
+        const websocket = new WebSocket(config.WEBSOCKET_URL);
         websocket.onmessage = function (message) {
             const json = JSON.parse(message.data);
             setTimeout(() => {
@@ -56,9 +56,6 @@ function List({ config }) {
         if (!record.state)
             return <Progress text={record.ip_version} state="danger" percent="100" />
         return <Progress text={record.ip_version} state="success" percent="100" />
-    }
-    function calculateOS(record) {
-        return record.os.charAt(0).toUpperCase() + record.os.slice(1);
     }
     // 在线时间
     function calculateUptime(record) {
@@ -112,7 +109,7 @@ function List({ config }) {
             return <Progress text={"- %"} state="danger" percent={100} />
         }
         const { cpu_used_pct } = record
-        if (record.cpu >= 80)
+        if (cpu_used_pct >= 80)
             return <Progress text={cpu_used_pct + "%"} state="warning" percent={cpu_used_pct} />
         else
             return <Progress text={cpu_used_pct + "%"} state="success" percent={cpu_used_pct} />
@@ -151,9 +148,9 @@ function List({ config }) {
         return (
             <>
                 <Space split={<Divider type='vertical' />}>
-                    <span>电信：{state ? lost_rate_10000 : "-"}%</span>
-                    <span>联通：{state ? lost_rate_10010 : "-"}%</span>
-                    <span>移动：{state ? lost_rate_10086 : "-"}%</span>
+                    <span>电信：{state ? Math.abs(lost_rate_10000) : "-"}%</span>
+                    <span>联通：{state ? Math.abs(lost_rate_10010) : "-"}%</span>
+                    <span>移动：{state ? Math.abs(lost_rate_10086) : "-"}%</span>
                 </Space>
             </>
         )
@@ -179,7 +176,9 @@ function List({ config }) {
         {
             title: '系统',
             align: "center",
-            render: (col, record) => <>{calculateOS(record)}</>
+            render: (col, record) => (
+                <img src={`https://image.onezol.com/os/${(record.platform)?.toLowerCase()}.png`} className="os_column" alt="" />
+            )
         },
         {
             title: '位置', align: "center", render: (col, record) => (
@@ -225,7 +224,6 @@ function List({ config }) {
             align: "center",
             render: (col, record) => <>{calculateDelay(record)}</>
         },
-
     ];
     const [expandedRowKeys, setExpandedRowKeys] = useState([]);
 
@@ -254,7 +252,7 @@ function List({ config }) {
                             data={
                                 [{
                                     label: 'CPU数量',
-                                    value: record.cpu_count
+                                    value: record.cpu_count || 1
                                 }, {
                                     label: '进程数量',
                                     value: record.state ? record.process : "-",

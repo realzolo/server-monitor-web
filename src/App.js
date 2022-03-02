@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import List from "./components/List";
 
 let CONFIG = {
-  API: "",
+  WEBSOCKET_URL: "",
   SITE_NAME: ""
 }
 function App() {
@@ -11,7 +11,7 @@ function App() {
   const [config, setConfig] = useState({});
   useEffect(() => {
     (async () => {
-      const response = await fetch("config.json");
+      const response = await fetch("static/config.json");
       CONFIG = await response.json();
       setConfig(CONFIG)
     })()
