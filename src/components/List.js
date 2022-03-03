@@ -13,7 +13,7 @@ function List({ config }) {
             setTimeout(() => {
                 setData(json);
                 setState({ loading: false, hasError: false });
-            }, 1500);
+            }, 500);
         }
         websocket.onerror = function () {
             setState({ loading: false, hasError: true });
