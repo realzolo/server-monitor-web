@@ -1,4 +1,7 @@
 /* 全局样式 */
+body,#root,.app_wrapper{
+    height: 100vh;
+}
 body{
     background: #222 url(./bg.png);
     color: #fff;
@@ -12,11 +15,16 @@ body{
 ::-webkit-scrollbar, ::-webkit-scrollbar-thumb {
     display: none;
 }
-
+.app_wrapper{  
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 /* 头部Header */
 .header_wrapper{
     display: flex;
-    flex: 1;
+    display: -webkit-flex;
     height: 50px;
     background-color: #1B1B1B;
     background-image: -moz-linear-gradient(top, #222222, #111111);
@@ -32,9 +40,10 @@ body{
     color: var(--color-text-1);
 }
 
-/* 监控列表 */
+/* 监控列表List */
 .list_wrapper{
    display: flex;
+   display: -webkit-flex;
    justify-content: center;
    margin: 30px;
 }
@@ -47,6 +56,24 @@ body{
     -moz-box-shadow: 0 1px 10px rgba(0, 0, 0, .1);
     box-shadow: 0 1px 10px rgb(0 0 0 / 10%);
     margin-bottom: 20px;
+}
+/* 页脚Footer */
+.footer_wrapper{
+    display: flex;
+    display: -webkit-flex;
+    width: 100vw;
+    height: 49px;
+    border-top: 1px solid rgb(113 113 122/.3);
+    /* background: #; */
+    justify-content: center;
+    align-items: center;
+    color: var(--color-text-1);
+}
+.footer_wrapper>a{
+    text-decoration: none;
+    color: rgb(161 161 170);
+    font-size: 13px;
+    font-weight: 500;
 }
 
 /* 进度条Progress */
@@ -86,8 +113,8 @@ body{
     background-repeat: repeat-x;
 }
 .speed_column{
-    width: 180px;
-    max-width: 180px;
+    width: 170px;
+    max-width: 170px;
 }
 .os_column{
     width: 20px;
@@ -102,10 +129,13 @@ body{
     white-space: nowrap;
 }
 .arco-descriptions-row>td:nth-child(2),.arco-descriptions-row>td:nth-child(4){
-    width: 230px;
-    max-width: 230px;
+    width: 220px;
+    max-width: 220px;
 }
 .arco-table-tr>td:nth-child(5) .arco-table-cell-wrap-value,.arco-table-tr>td:nth-child(4) .arco-table-cell-wrap-value{
     display: flex;
     justify-content: center;
+}
+.arco-divider-vertical{
+    margin: 0 5px;
 }

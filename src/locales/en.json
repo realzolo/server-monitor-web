@@ -1,0 +1,28 @@
+{
+    "column": {
+        "protocol": "Protocol",
+        "name": "Name",
+        "os": "OS",
+        "location": "Location",
+        "uptime": "Uptime",
+        "load": "Load",
+        "net_speed": "NetSpeed ↓↑",
+        "total_bytes": "TotalBytes ↓↑",
+        "cpu": "CPU",
+        "memory": "Memory",
+        "hard_disk": "HardDisk",
+        "net_latency": "NetLatency(CT|CU|CM)"
+    },
+    "detail": {
+        "cpu_count": "Cpu Count",
+        "process_count": "Process Count",
+        "swap_memory": "Swap Memory",
+        "memory": "Memory",
+        "hard_disk": "Hard Disk",
+        "packet_loss": "Packet Loss(CT|CU|CM)"
+    },
+    "unit": {
+        "day": "d",
+        "hour": "h"
+    }
+}

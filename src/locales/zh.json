@@ -1,0 +1,28 @@
+{
+    "column": {
+        "protocol": "协议",
+        "name": "节点名",
+        "os": "系统",
+        "location": "位置",
+        "uptime": "在线时间",
+        "load": "负载",
+        "net_speed": "网络速度 ↓↑",
+        "total_bytes": "总流量 ↓↑",
+        "cpu": "处理器",
+        "memory": "内存",
+        "hard_disk": "硬盘",
+        "net_latency": "网络时延(CT|CU|CM)"
+    },
+    "detail": {
+        "cpu_count": "CPU数量",
+        "process_count": "进程数量",
+        "swap_memory": "交换内存",
+        "memory": "物理内存",
+        "hard_disk": "物理硬盘",
+        "packet_loss": "丢包率(CT|CU|CM)"
+    },
+    "unit": {
+        "day": "天",
+        "hour": "小时"
+    }
+}

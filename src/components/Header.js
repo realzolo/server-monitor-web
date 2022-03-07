@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 function Header({ config }) {
-    const [title, setTitle] = useState("");
+    const [title, setTitle] = useState("SSProbe");
     useEffect(() => {
         if (!config.SITE_TITLE) return;
         setTitle(config.SITE_TITLE);
