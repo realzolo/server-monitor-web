@@ -28,10 +28,11 @@ function App() {
 
   return (
     <div className="app_wrapper">
-      <Header config={config} />
-      <List config={config} />
-      <div style={{height: "20vh"}}/>
-      <Footer/>
+      <div className="app_box">
+        <Header config={config} />
+        <List config={config} />
+      </div>
+      <Footer />
     </div>
   );
 }

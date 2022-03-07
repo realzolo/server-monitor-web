@@ -1,4 +1,4 @@
 {
-    "site_title":"Zolo's Server Monitor",
+    "site_title":"Zolo's Monitor",
     "websocket_url": "wss://api.onezol.com:8080/wss/monitor/json"
 }

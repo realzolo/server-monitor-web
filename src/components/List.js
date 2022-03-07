@@ -68,7 +68,7 @@ function List({ config }) {
         {
             title: t('column.net_speed'),
             align: "center",
-            className: "column.speed_column",
+            className: "speed_column",
             render: (col, record) => <>{getNetwork(record)}</>
         },
         {
@@ -112,7 +112,6 @@ function List({ config }) {
                     data={data || []}
                     rowKey="host"
                     pagination={false}
-                    stripe={true}
                     noDataElement={
                         <h4 style={{ margin: 0, color: "rgb(var(--gray-8))" }}>{state.loading ? "内容正在加载中..." : state.hasError ? "数据通道建立失败，请检查服务器是否出现异常！" : "这里没有数据，请先创建你的客户端哦。"}</h4>
                     }
