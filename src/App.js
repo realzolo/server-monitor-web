@@ -10,12 +10,12 @@ function App() {
     (async () => {
       let response, atLocal = false;
       try {
-        // 请求本地配置文件
-        response = await fetch("config.json");
-        atLocal = true;
-      } catch (error) {
         // 请求服务器配置文件
         response = await fetch("http://127.0.0.1:10240/ws");
+      } catch (error) {
+        // 请求本地配置文件
+        response = await fetch("config.json");
+        atLocal = true
       } finally {
         const _config = await response.json();
         setConfig({

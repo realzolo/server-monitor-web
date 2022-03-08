@@ -32,7 +32,9 @@ function List({ config }) {
         websocket.onmessage = function (message) {
             const json = JSON.parse(message.data);
             setData(json);
-            setState({ loading: false, hasError: false });
+            setTimeout(() => {
+                setState({ loading: false, hasError: false });  
+            }, 200)
         }
         websocket.onerror = function () {
             setState({ loading: false, hasError: true });
@@ -96,12 +98,10 @@ function List({ config }) {
         },
         {
             title: t("column.memory"),
-            align: "center",
             render: (col, record) => <>{getMemory(record)}</>
         },
         {
             title: t("column.hard_disk"),
-            align: "center",
             render: (col, record) => <>{getHDD(record)}</>
         },
         {
