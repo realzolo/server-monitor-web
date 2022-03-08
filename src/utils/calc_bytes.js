@@ -1,7 +1,7 @@
 // 字节计算
 export function bytesToSize(bytes, precision, si) {
     let ret, megabyte, gigabyte, terabyte;
-    si = typeof si !== 'undefined' ? si : 0;
+    si = typeof si !== "undefined" ? si : 0;
     if (si !== 0) {
         megabyte = 1000 * 1000;
         gigabyte = megabyte * 1000;
@@ -13,13 +13,13 @@ export function bytesToSize(bytes, precision, si) {
     }
 
     if ((bytes >= megabyte) && (bytes < gigabyte)) {
-        ret = (bytes / megabyte).toFixed(precision) + ' M';
+        ret = (bytes / megabyte).toFixed(precision) + " M";
     } else if ((bytes >= gigabyte) && (bytes < terabyte)) {
-        ret = (bytes / gigabyte).toFixed(precision) + ' G';
+        ret = (bytes / gigabyte).toFixed(precision) + " G";
     } else if (bytes >= terabyte) {
-        ret = (bytes / terabyte).toFixed(precision) + ' T';
+        ret = (bytes / terabyte).toFixed(precision) + " T";
     } else {
-        return bytes + ' B';
+        return bytes + " B";
     }
-    return ret + 'B';
+    return ret + "B";
 }

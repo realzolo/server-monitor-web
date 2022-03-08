@@ -19,11 +19,17 @@
         "swap_memory": "Swap Memory",
         "memory": "Memory",
         "hard_disk": "Hard Disk",
-        "packet_loss": "Packet Loss(CT|CU|CM)"
+        "packet_loss": "Packet Loss(CT|CU|CM)",
+        "uptime": "Uptime",
+        "load": "Load(1m|5m|15m)"
     },
     "unit": {
         "day": "d",
         "hour": "h"
+    },
+    "state":{
+        "running": "Running",
+        "error": "Error"
     },
     "tips": {
         "loading": "Loading...",

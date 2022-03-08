@@ -19,11 +19,17 @@
         "swap_memory": "交换内存",
         "memory": "物理内存",
         "hard_disk": "物理硬盘",
-        "packet_loss": "丢包率(CT|CU|CM)"
+        "packet_loss": "丢包率(CT|CU|CM)",
+        "uptime": "运行时间",
+        "load": "负载(1m|5m|15m)"
     },
     "unit": {
         "day": "天",
         "hour": "小时"
+    },
+    "state":{
+        "running": "运行中",
+        "error": "故障"
     },
     "tips": {
         "loading": "Loading...",

@@ -4,7 +4,7 @@ import List from "./components/List";
 import Footer from "./components/Footer";
 
 function App() {
-  document.body.setAttribute('arco-theme', 'dark');
+  document.body.setAttribute("arco-theme", "dark");
   const [config, setConfig] = useState({});
   useEffect(() => {
     (async () => {
@@ -19,8 +19,10 @@ function App() {
       } finally {
         const _config = await response.json();
         setConfig({
-          SITE_TITLE: _config.site_title,
-          WEBSOCKET_URL: atLocal ? _config.websocket_url : "ws://127.0.0.1:" + _config.websocket_port
+          site_title: _config.site_title,
+          websocket_url: atLocal ? _config.websocket_url : "ws://127.0.0.1:" + _config.websocket_port,
+          github: _config.github,
+          telegram: _config.telegram
         })
       }
     })()
