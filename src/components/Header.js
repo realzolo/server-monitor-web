@@ -7,7 +7,7 @@ function Header({ config }) {
         if (!site_title) return;
         setState({ title: site_title, github, telegram });
         document.title = site_title;
-    }, [site_title])
+    }, [config])
     return (
         <div className="header_wrapper">
             <div className="header_title">

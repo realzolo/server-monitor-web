@@ -40,7 +40,7 @@ function List({ config }) {
         return () => {
             if (websocket) websocket.close();
         }
-    }, [websocket_url])
+    }, [config])
 
     const columns = [
         {
