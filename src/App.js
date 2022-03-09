@@ -11,16 +11,25 @@ function App() {
       let response, atLocal = false;
       try {
         // 请求服务器配置文件
-        response = await fetch("http://127.0.0.1:10240/ws");
+        response = await fetch("/json");
       } catch (error) {
         // 请求本地配置文件
         response = await fetch("config.json");
         atLocal = true
       } finally {
+        let ws;
+        if (!atLocal) {
+          const { url } = response;
+          if (url.substring(0, 5) === "https") {
+            ws = url.replace("https", "wss").replace("json", "wss/ws");
+          } else {
+            ws = url.replace("http", "ws").replace("json", "ws");
+          }
+        }
         const _config = await response.json();
         setConfig({
           site_title: _config.site_title,
-          websocket_url: atLocal ? _config.websocket_url : "ws://127.0.0.1:" + _config.websocket_port,
+          websocket_url: atLocal ? _config.websocket_url : ws,
           github: _config.github,
           telegram: _config.telegram
         })

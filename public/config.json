@@ -1,6 +1,6 @@
 {
     "site_title":"Zolo's Probe",
-    "websocket_url": "wss://api.onezol.com:8080/wss/monitor/json",
+    "websocket_url": "wss://api.onezol.com:8080/wss/ws",
     "github": "https://github.com/realzolo/ssprobe",
     "telegram": "https://t.me/realzolo"
 }
