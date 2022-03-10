@@ -9,7 +9,7 @@ function App() {
   async function fetchData(url) {
     const response = await fetch(url);
     const result = await response.json();
-    return [response, result]
+    return [response, result, response.ok === true]
   }
   useEffect(() => {
     (async () => {
@@ -19,7 +19,7 @@ function App() {
       } catch (e) {
         toLResArray = await fetchData("config.json")
       } finally {
-        const atServer = toSResArray && toSResArray[1];
+        const atServer = toSResArray && toSResArray[1] && toSResArray[2];
         if (atServer) {
           const { url } = toSResArray[0];
           if (url.substring(0, 5) === "https") {
