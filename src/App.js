@@ -33,7 +33,7 @@ function App() {
         const _config = toSResArray[2] ? toSResArray[1] : toLResArray[1];
         setConfig({
           site_title: _config.site_title,
-          websocket_url: atServer ? wsUrl : _config.websocket_url,
+          websocket_url: toSResArray[2] ? wsUrl : _config.websocket_url,
           github: _config.github,
           telegram: _config.telegram
         })
