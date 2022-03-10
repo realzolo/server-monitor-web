@@ -22,7 +22,7 @@ function App() {
       } catch (e) {
         toLResArray = await fetchData("config.json")
       } finally {
-        if (toSResArray[2]) {
+        if (toSResArray && toSResArray[2]) {
           const { url } = toSResArray[0];
           if (url.substring(0, 5) === "https") {
             wsUrl = url.replace("https", "wss").replace("json", "wss/ws");
@@ -30,10 +30,10 @@ function App() {
             wsUrl = url.replace("http", "ws").replace("json", "ws");
           }
         }
-        const _config = toSResArray[2] ? toSResArray[1] : toLResArray[1];
+        const _config = (toSResArray && toSResArray[2]) ? toSResArray[1] : toLResArray[1];
         setConfig({
           site_title: _config.site_title,
-          websocket_url: toSResArray[2] ? wsUrl : _config.websocket_url,
+          websocket_url: (toSResArray && toSResArray[2]) ? wsUrl : _config.websocket_url,
           github: _config.github,
           telegram: _config.telegram
         })
