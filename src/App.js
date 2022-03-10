@@ -9,10 +9,10 @@ function App() {
   async function fetchData(url) {
     const response = await fetch(url);
     const result = await response.json();
-    if (result && !result.success) {
+    if (!response.ok) {
       throw new Error()
     }
-    return [response, result, result.success]
+    return [response, result, response.ok]
   }
   useEffect(() => {
     (async () => {
@@ -22,7 +22,8 @@ function App() {
       } catch (e) {
         toLResArray = await fetchData("config.json")
       } finally {
-        if (toSResArray && toSResArray[2]) {
+        const atServer = toSResArray && toSResArray[1] && toSResArray[2];
+        if (atServer) {
           const { url } = toSResArray[0];
           if (url.substring(0, 5) === "https") {
             wsUrl = url.replace("https", "wss").replace("json", "wss/ws");
@@ -30,10 +31,10 @@ function App() {
             wsUrl = url.replace("http", "ws").replace("json", "ws");
           }
         }
-        const _config = (toSResArray && toSResArray[2]) ? toSResArray[1] : toLResArray[1];
+        const _config = (atServer) ? toSResArray[1] : toLResArray[1];
         setConfig({
           site_title: _config.site_title,
-          websocket_url: (toSResArray && toSResArray[2]) ? wsUrl : _config.websocket_url,
+          websocket_url: (atServer) ? wsUrl : _config.websocket_url,
           github: _config.github,
           telegram: _config.telegram
         })
