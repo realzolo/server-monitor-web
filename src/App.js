@@ -6,37 +6,38 @@ import Footer from "./components/Footer";
 function App() {
   document.body.setAttribute("arco-theme", "dark");
   const [config, setConfig] = useState({});
+  async function fetchData(url) {
+    const response = await fetch(url);
+    const result = await response.json();
+    return [response, result]
+  }
   useEffect(() => {
     (async () => {
-      let response, atLocal = false;
+      let toSResArray, toLResArray, wsUrl;
       try {
-        // 请求服务器配置文件
-        response = await fetch("/json");
-      } catch (error) {
-        // 请求本地配置文件
-        response = await fetch("config.json");
-        atLocal = true
+        toSResArray = await fetchData("/json");
+      } catch (e) {
+        toLResArray = await fetchData("config.json")
       } finally {
-        let ws;
-        if (!atLocal) {
-          const { url } = response;
+        const atServer = toSResArray && toSResArray[1];
+        if (atServer) {
+          const { url } = toSResArray[0];
           if (url.substring(0, 5) === "https") {
-            ws = url.replace("https", "wss").replace("json", "wss/ws");
+            wsUrl = url.replace("https", "wss").replace("json", "wss/ws");
           } else {
-            ws = url.replace("http", "ws").replace("json", "ws");
+            wsUrl = url.replace("http", "ws").replace("json", "ws");
           }
         }
-        const _config = await response.json();
+        const _config = atServer || toLResArray[1];
         setConfig({
           site_title: _config.site_title,
-          websocket_url: atLocal ? _config.websocket_url : ws,
+          websocket_url: atServer ? wsUrl : _config.websocket_url,
           github: _config.github,
           telegram: _config.telegram
         })
       }
     })()
   }, [])
-
   return (
     <div className="app_wrapper">
       <div className="app_box">
