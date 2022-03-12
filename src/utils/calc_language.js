@@ -1,4 +1,4 @@
 export function getLanguage() {
-    let lang = (navigator.systemLanguage ? navigator.systemLanguage : navigator.language);;
+    let lang = localStorage.getItem("i18nextLng");
     return (lang === "zh-CN" || lang === "en") ? lang : "en";
 }
