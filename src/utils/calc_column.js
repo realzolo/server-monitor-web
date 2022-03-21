@@ -54,7 +54,7 @@ export function getTraffic(record) {
 }
 // CUP
 export function getCPU(record) {
-    const { state, cpu_used_pct } = record;
+    let { state, cpu_used_pct } = record;
     if (!state) return <Progress text={"- %"} state="danger" percent={100} />
     cpu_used_pct = cpu_used_pct > 100 ? 100 : cpu_used_pct;
     return cpu_used_pct >= 80 ?
@@ -63,7 +63,7 @@ export function getCPU(record) {
 }
 // 内存Memory
 export function getMemory(record) {
-    const { state, mem_used_pct, } = record;
+    let { state, mem_used_pct, } = record;
     if (!state) return <Progress text={"- %"} state="danger" percent={100} />
     mem_used_pct = mem_used_pct > 100 ? 100 : mem_used_pct;
     const mem_used_pct_str = mem_used_pct + "%";
@@ -76,7 +76,7 @@ export function getMemory(record) {
 }
 // 硬盘HDD
 export function getHDD(record) {
-    const { state, hdd_used_pct } = record;
+    let { state, hdd_used_pct } = record;
     if (!state) return <Progress text={"- %"} state="danger" percent={100} />
     hdd_used_pct = hdd_used_pct > 100 ? 100 : hdd_used_pct;
     const hdd_used_pct_str = hdd_used_pct + "%";
