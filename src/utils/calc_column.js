@@ -56,6 +56,7 @@ export function getTraffic(record) {
 export function getCPU(record) {
     const { state, cpu_used_pct } = record;
     if (!state) return <Progress text={"- %"} state="danger" percent={100} />
+    cpu_used_pct = cpu_used_pct > 100 ? 100 : cpu_used_pct;
     return cpu_used_pct >= 80 ?
         <Progress text={cpu_used_pct + "%"} state="warning" percent={cpu_used_pct} /> :
         <Progress text={cpu_used_pct + "%"} state="success" percent={cpu_used_pct} />;
@@ -64,6 +65,7 @@ export function getCPU(record) {
 export function getMemory(record) {
     const { state, mem_used_pct, } = record;
     if (!state) return <Progress text={"- %"} state="danger" percent={100} />
+    mem_used_pct = mem_used_pct > 100 ? 100 : mem_used_pct;
     const mem_used_pct_str = mem_used_pct + "%";
     if (mem_used_pct >= 90)
         return <Progress text={mem_used_pct_str} state="danger" percent={mem_used_pct} />
@@ -76,6 +78,7 @@ export function getMemory(record) {
 export function getHDD(record) {
     const { state, hdd_used_pct } = record;
     if (!state) return <Progress text={"- %"} state="danger" percent={100} />
+    hdd_used_pct = hdd_used_pct > 100 ? 100 : hdd_used_pct;
     const hdd_used_pct_str = hdd_used_pct + "%";
     if (hdd_used_pct >= 90)
         return <Progress text={hdd_used_pct_str} state="danger" percent={hdd_used_pct} />
